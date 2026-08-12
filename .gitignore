@@ -1,0 +1,4 @@
+/data/rsvp.json
+/data/*.csv
+.DS_Store
+*.log
