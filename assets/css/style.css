@@ -525,6 +525,15 @@ body {
 }
 
 /* Machine Readable Zone (MRZ) */
+.mrz-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #4a4a4a;
+    font-weight: 600;
+    letter-spacing: 2px;
+    word-break: break-all;
+}
 .mrz-zone {
     font-family: 'Courier New', monospace;
     font-size: 0.75rem;
@@ -535,6 +544,9 @@ body {
     border-radius: 4px;
     color: #1a0307;
     margin-top: 15px;
+}
+@media (max-width: 600px) {
+    .mrz-text { font-size: 0.8rem; }
 }
 
 /* Stamp Visuals */
@@ -1562,6 +1574,12 @@ body {
 }
 
 @media (max-width: 768px) {
+    .passport-booklet {
+        transform-style: flat;
+    }
+    .passport-booklet.is-open .passport-opened {
+        animation: none;
+    }
     .side-floral-border {
         display: none;
     }
@@ -1609,6 +1627,9 @@ body {
     .btn-submit-ticket {
         font-size: 1rem;
         padding: 14px 16px;
+    }
+    .rsvp-card {
+        padding: 25px 15px;
     }
 }
 
