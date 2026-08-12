@@ -614,7 +614,9 @@ function downloadTicketImage() {
     const link = document.createElement('a');
     link.download = 'Busra_Emir_Dugun_Bileti_' + passenger.replace(/\s+/g, '_') + '.png';
     link.href = canvas.toDataURL('image/png');
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
 }
 
 
