@@ -24,7 +24,7 @@ $settings = getSettings();
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css?v=4">
+    <link rel="stylesheet" href="assets/css/style.css?v=5">
 </head>
 <body>
 
@@ -177,23 +177,25 @@ $settings = getSettings();
         </section>
 
         <!-- 2.3.1 Ailelerimiz Bölümü -->
-        <section class="family-card-section" style="margin: 25px 0;">
-            <div class="stamp-card" style="background: var(--parchment-bg); border-radius: 14px; border: 1px solid var(--parchment-border); padding: 22px 30px; text-align: center;">
-                <h3 class="section-title" style="margin-bottom: 14px; font-size: 1.3rem; color: var(--burgundy-dark);" data-i18n="family_title">AİLELERİMİZ</h3>
-                <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px;">
-                    <div style="flex: 1; min-width: 220px;">
-                        <div style="font-family: var(--font-heading); font-size: 0.75rem; color: var(--parchment-sub); letter-spacing: 1px;" data-i18n="bride_family_label">GELİN AİLESİ</div>
-                        <div style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700; color: var(--burgundy-dark); margin-top: 4px;">
+        <section class="family-card-section">
+            <div class="family-card">
+                <h3 class="section-title family-section-title" data-i18n="family_title">AİLELERİMİZ</h3>
+                <div class="family-grid">
+                    <div class="family-column">
+                        <div class="family-label" data-i18n="bride_family_label">GELİN AİLESİ</div>
+                        <div class="family-name">
                             <?= htmlspecialchars($settings['bride_family']) ?>
                         </div>
                     </div>
-                    <div style="font-size: 1.4rem; color: var(--gold-dark);">♥</div>
-                    <div style="flex: 1; min-width: 220px;">
-                        <div style="font-family: var(--font-heading); font-size: 0.75rem; color: var(--parchment-sub); letter-spacing: 1px;" data-i18n="groom_family_label">DAMAT AİLESİ</div>
-                        <div style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700; color: var(--burgundy-dark); margin-top: 4px;">
+                    <div class="family-heart">♥</div>
+                    <div class="family-column">
+                        <div class="family-label" data-i18n="groom_family_label">DAMAT AİLESİ</div>
+                        <div class="family-name">
                             <?= htmlspecialchars($settings['groom_family']) ?>
                         </div>
                     </div>
+                </div>
+            </div>
         </section>
 
         <!-- 2.3.2 Geri Sayım Aracı (Countdown Widget) -->
@@ -406,30 +408,30 @@ $settings = getSettings();
         <div class="modal-box">
             <button class="close-modal-btn" onclick="closeTicketModal()">×</button>
             
-            <h3 style="font-family:var(--font-heading); color:var(--gold-primary); margin-bottom:6px;">
+            <h3 class="modal-title">
                 🎉 KATILIM KAYDINIZ ALINDI!
             </h3>
-            <p style="font-size:0.85rem; color:#ccc;">
+            <p class="modal-desc">
                 Aşağıdaki kişisel biniş kartınız oluşturuldu. Bileti delikli çizgisinden çekerek koparabilirsiniz!
             </p>
 
             <div class="tear-container" id="souvenirTicketCard">
                 <div class="tear-pass">
-                    <div class="pass-main" style="text-align:left;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                            <span style="font-family:var(--font-heading); font-weight:bold; color:var(--burgundy-dark);">BOARDING PASS</span>
-                            <span style="font-size:0.75rem; color:var(--parchment-sub);" id="ticketClass">FIRST CLASS</span>
+                    <div class="pass-main tear-pass-main">
+                        <div class="tear-pass-header">
+                            <span class="tear-pass-title">BOARDING PASS</span>
+                            <span class="tear-pass-class" id="ticketClass">FIRST CLASS</span>
                         </div>
                         
-                        <div style="font-family:var(--font-heading); font-size:1.4rem; font-weight:bold; color:var(--burgundy-dark);" id="ticketPassengerName">
+                        <div class="tear-passenger-name" id="ticketPassengerName">
                             Katılımcı Adı
                         </div>
                         
-                        <div style="font-size:0.8rem; color:var(--parchment-sub); margin:6px 0;">
+                        <div class="tear-route">
                             FROM: <strong>LOVE</strong> → TO: <strong>FOREVER</strong>
                         </div>
 
-                        <div style="display:flex; gap:15px; font-size:0.8rem; margin-top:10px; border-top:1px solid var(--parchment-border); padding-top:8px;">
+                        <div class="tear-info-row">
                             <div>GATE: <strong id="ticketGate">LOV27</strong></div>
                             <div>SEAT: <strong id="ticketSeat">01A</strong></div>
                             <div>PAX: <strong id="ticketGuests">1 PAX</strong></div>
@@ -445,12 +447,12 @@ $settings = getSettings();
                 </div>
             </div>
 
-            <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-                <button class="action-btn" onclick="tearTicketStub()" style="background:var(--gold-metallic); color:#1a0307;">
+            <div class="modal-actions">
+                <button class="action-btn action-btn-gold" onclick="tearTicketStub()">
                     ✂️ Bileti Kopar!
                 </button>
                 <button class="action-btn" onclick="downloadTicketImage()">
-                    📥 Bileti Görsel İndir (PNG)
+                    📥 Görsel İndir
                 </button>
                 <button class="action-btn" onclick="openCalendarModal()">
                     📅 Takvime Ekle
@@ -464,10 +466,10 @@ $settings = getSettings();
         <div class="modal-box">
             <button class="close-modal-btn" onclick="closeMapModal()">×</button>
             
-            <h3 style="font-family:var(--font-heading); color:var(--gold-primary); margin-bottom:6px;">
+            <h3 class="modal-title">
                 📍 DÜĞÜN MEKÂNI VE YOL TARİFİ
             </h3>
-            <p style="font-size:0.85rem; color:#ccc;">
+            <p class="modal-desc">
                 <?= htmlspecialchars($settings['venue_name']) ?><br>
                 <?= htmlspecialchars($settings['address']) ?>
             </p>
@@ -483,8 +485,8 @@ $settings = getSettings();
                 </iframe>
             </div>
 
-            <div style="margin-top:20px; display:flex; gap:12px; justify-content:center;">
-                <a href="<?= htmlspecialchars($settings['maps_url']) ?>" target="_blank" class="action-btn" style="background:var(--gold-metallic); color:#1a0307;">
+            <div class="modal-actions">
+                <a href="<?= htmlspecialchars($settings['maps_url']) ?>" target="_blank" class="action-btn action-btn-gold">
                     Google Maps'te Aç ↗
                 </a>
                 <button class="action-btn" onclick="closeMapModal()">Kapat</button>
@@ -497,10 +499,10 @@ $settings = getSettings();
         <div class="modal-box" style="max-width:450px;">
             <button class="close-modal-btn" onclick="closeCalendarModal()">×</button>
             
-            <h3 style="font-family:var(--font-heading); color:var(--gold-primary); margin-bottom:12px;">
+            <h3 class="modal-title">
                 📅 TAKVİME HATIRLATICI EKLENİYOR
             </h3>
-            <p style="font-size:0.85rem; color:#ccc; margin-bottom:20px;">
+            <p class="modal-desc" style="margin-bottom:20px;">
                 Hangi etkinlik için hatırlatıcı oluşturmak istersiniz?
             </p>
 
@@ -520,7 +522,7 @@ $settings = getSettings();
         <div class="modal-box" style="max-width:850px; padding:25px;">
             <button class="close-modal-btn" onclick="closeIntroVideoModal()">×</button>
             
-            <h3 style="font-family:var(--font-heading); color:var(--gold-primary); margin-bottom:12px; font-size:1.4rem;">
+            <h3 class="modal-title modal-title-lg">
                 🎬 AŞK YOLCULUĞUMUZ — TANITIM FİLMİ
             </h3>
 
@@ -532,8 +534,8 @@ $settings = getSettings();
                 </video>
             </div>
 
-            <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-                <button class="action-btn" onclick="closeIntroVideoModal(); togglePassport();" style="background:var(--gold-metallic); color:#1a0307; font-weight:bold;">
+            <div class="modal-actions">
+                <button class="action-btn action-btn-gold" onclick="closeIntroVideoModal(); togglePassport();" style="font-weight:bold;">
                     ✈ Pasaportu Aç & Davetiyeye Geç
                 </button>
                 <button class="action-btn" onclick="closeIntroVideoModal()">

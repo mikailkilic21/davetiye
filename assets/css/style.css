@@ -1286,51 +1286,147 @@ body {
     margin-top: 15px;
 }
 
-/* Responsive Rules */
-@media (max-width: 768px) {
-    .passport-booklet.is-open .passport-opened {
-        grid-template-columns: 1fr;
-    }
-    .details-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .details-grid .detail-card:last-child {
-        grid-column: span 2;
-    }
-    .stamp-card {
-        grid-template-columns: 1fr;
-    }
-    .stamp-badge-left {
-        border-right: none;
-        border-bottom: 1px dashed var(--parchment-border);
-        padding-right: 0;
-        padding-bottom: 15px;
-    }
-    .story-card {
-        grid-template-columns: 1fr;
-    }
-    .boarding-pass {
-        flex-direction: column;
-    }
-    .pass-stub {
-        width: 100%;
-        height: 100px;
-        flex-direction: row;
-    }
-    .stub-vertical-text {
-        writing-mode: horizontal-tb;
-        transform: none;
-    }
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-    .bottom-bar-content {
-        gap: 6px;
-    }
-    .action-btn-text {
-        display: none;
-    }
+/* ==========================================================================
+   AILELERIMIZ (Family Card Section) — index.php only
+   ========================================================================== */
+.family-card-section {
+    margin: 25px 0;
 }
+
+.family-card {
+    background: var(--parchment-bg);
+    border-radius: 14px;
+    border: 1px solid var(--parchment-border);
+    padding: 22px 30px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+}
+
+.family-section-title {
+    margin-bottom: 14px;
+    font-size: 1.3rem;
+    color: var(--burgundy-dark);
+}
+
+.family-grid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.family-column {
+    flex: 1;
+    min-width: 180px;
+}
+
+.family-label {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    color: var(--parchment-sub);
+    letter-spacing: 1px;
+}
+
+.family-name {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--burgundy-dark);
+    margin-top: 4px;
+}
+
+.family-heart {
+    font-size: 1.4rem;
+    color: var(--gold-dark);
+}
+
+/* ==========================================================================
+   MODAL UI COMPONENTS (Shared Classes)
+   ========================================================================== */
+.modal-title {
+    font-family: var(--font-heading);
+    color: var(--gold-primary);
+    margin-bottom: 6px;
+    font-size: 1.1rem;
+}
+
+.modal-title-lg {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+}
+
+.modal-desc {
+    font-size: 0.85rem;
+    color: #ccc;
+    line-height: 1.5;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.action-btn-gold {
+    background: var(--gold-metallic);
+    color: #1a0307;
+}
+
+/* ==========================================================================
+   TEAR-OFF TICKET MODAL COMPONENTS
+   ========================================================================== */
+.tear-pass-main {
+    text-align: left;
+}
+
+.tear-pass-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.tear-pass-title {
+    font-family: var(--font-heading);
+    font-weight: bold;
+    color: var(--burgundy-dark);
+    font-size: 0.95rem;
+}
+
+.tear-pass-class {
+    font-size: 0.75rem;
+    color: var(--parchment-sub);
+}
+
+.tear-passenger-name {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--burgundy-dark);
+}
+
+.tear-route {
+    font-size: 0.8rem;
+    color: var(--parchment-sub);
+    margin: 6px 0;
+}
+
+.tear-info-row {
+    display: flex;
+    gap: 15px;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    border-top: 1px solid var(--parchment-border);
+    padding-top: 8px;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN — COMPREHENSIVE MOBILE-FIRST OVERHAUL
+   ========================================================================== */
 
 /* ==========================================================================
    Geri Sayım Aracı (Countdown Widget)
@@ -1439,32 +1535,6 @@ body {
     font-weight: 600;
 }
 
-@media (max-width: 576px) {
-    .countdown-card {
-        padding: 25px 15px;
-        border-radius: 18px;
-    }
-    .countdown-title {
-        font-size: 1.75rem;
-        margin-bottom: 20px;
-    }
-    .countdown-grid {
-        gap: 8px;
-    }
-    .countdown-item {
-        min-width: 72px;
-        padding: 14px 6px;
-        border-radius: 18px;
-    }
-    .countdown-number {
-        font-size: 1.9rem;
-    }
-    .countdown-label {
-        font-size: 0.65rem;
-        letter-spacing: 1px;
-    }
-}
-
 /* ==========================================================================
    Yan Sayfa Çiçek Şeritleri (Full-Height Side Floral Borders)
    ========================================================================== */
@@ -1552,6 +1622,9 @@ body {
     transform: scaleX(-1);
 }
 
+/* ==========================================================================
+   RESPONSIVE: Floral Border Scaling
+   ========================================================================== */
 @media (max-width: 1500px) {
     .side-floral-border {
         width: 300px;
@@ -1566,70 +1639,1291 @@ body {
     }
 }
 
+/* ==========================================================================
+   RESPONSIVE: Tablet Landscape (~1024px)
+   ========================================================================== */
 @media (max-width: 1024px) {
     .side-floral-border {
         width: 150px;
         opacity: 0.5;
     }
+    
+    .details-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .pass-title {
+        font-size: 0.95rem;
+    }
 }
 
+/* ==========================================================================
+   RESPONSIVE: Tablet Portrait (~768px)
+   ========================================================================== */
 @media (max-width: 768px) {
+    /* -- General Layout -- */
+    body {
+        padding-bottom: 75px;
+    }
+    
+    .container {
+        padding: 0 12px;
+    }
+    
+    /* -- Header -- */
+    .top-header {
+        padding: 10px 14px;
+    }
+    
+    .logo-monogram {
+        font-size: 1.3rem;
+    }
+    
+    .lang-btn {
+        padding: 4px 9px;
+        font-size: 0.7rem;
+    }
+    
+    .audio-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+    
+    /* -- Hero & Passport -- */
+    .hero-section {
+        padding: 25px 0 15px;
+    }
+    
     .passport-booklet {
+        min-height: auto;
         transform-style: flat;
     }
+    
+    .passport-cover-img-wrap {
+        width: 280px;
+    }
+    
     .passport-booklet.is-open .passport-opened {
+        grid-template-columns: 1fr;
         animation: none;
     }
+    
+    .page-left {
+        padding: 18px;
+    }
+    
+    .page-right {
+        padding: 18px;
+    }
+    
+    .id-header h4 {
+        font-size: 0.7rem;
+    }
+    
+    .id-grid {
+        gap: 10px;
+    }
+    
+    .photo-frame {
+        width: 85px;
+        height: 105px;
+    }
+    
+    .id-val {
+        font-size: 0.78rem;
+    }
+    
+    .mrz-zone {
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+        word-break: break-all;
+        overflow-x: auto;
+    }
+    
+    .stamp-visa {
+        right: 10px;
+        bottom: 35px;
+        font-size: 0.65rem;
+        padding: 4px 8px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .hero-desc {
+        font-size: 0.85rem;
+    }
+    
+    .passport-open-badge {
+        font-size: 0.65rem;
+        padding: 6px 14px;
+        bottom: 18px;
+    }
+    
+    /* -- Intro Video Banner -- */
+    .intro-video-banner {
+        font-size: 0.75rem;
+        padding: 8px 16px;
+    }
+    
+    /* -- Stamp Card (Trilingual) -- */
+    .stamp-card {
+        grid-template-columns: 1fr;
+        padding: 18px;
+    }
+    
+    .stamp-badge-left {
+        border-right: none;
+        border-bottom: 1px dashed var(--parchment-border);
+        padding-right: 0;
+        padding-bottom: 15px;
+    }
+    
+    .stamp-card-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .lang-column {
+        border-right: none;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        padding: 10px 0;
+    }
+    
+    .lang-column:last-child {
+        border-bottom: none;
+    }
+    
+    /* -- Boarding Pass -- */
+    .section-title {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+    
+    .boarding-pass {
+        flex-direction: column;
+    }
+    
+    .pass-main {
+        padding: 18px 16px;
+    }
+    
+    .pass-header {
+        gap: 8px;
+    }
+    
+    .plane-icon {
+        font-size: 1.4rem;
+    }
+    
+    .pass-title {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+    
+    .pass-sub {
+        font-size: 0.6rem;
+    }
+    
+    .pass-body-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .passenger-name {
+        font-size: 1.3rem;
+    }
+    
+    .route-container {
+        grid-column: span 1;
+        padding: 10px 14px;
+    }
+    
+    .city-code {
+        font-size: 1rem;
+    }
+    
+    .route-line {
+        margin: 0 12px;
+    }
+    
+    .pass-info-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .pass-field-val {
+        font-size: 0.85rem;
+    }
+    
+    .pass-stub {
+        width: 100%;
+        height: 80px;
+        flex-direction: row;
+        padding: 12px 16px;
+        gap: 16px;
+    }
+    
+    .stub-vertical-text {
+        writing-mode: horizontal-tb;
+        transform: none;
+        font-size: 0.85rem;
+    }
+    
+    .barcode-svg {
+        height: 50px;
+        width: auto;
+        max-width: 120px;
+    }
+    
+    .perforated-divider {
+        width: 100%;
+        height: 2px;
+        background-image: linear-gradient(to right, #a08465 50%, transparent 50%);
+        background-size: 12px 2px;
+    }
+    
+    .perforated-divider::before,
+    .perforated-divider::after {
+        width: 18px;
+        height: 18px;
+        left: auto;
+        top: -9px;
+    }
+    
+    .perforated-divider::before {
+        left: -9px;
+        top: -9px;
+    }
+    
+    .perforated-divider::after {
+        right: -9px;
+        left: auto;
+        bottom: auto;
+        top: -9px;
+    }
+    
+    /* -- Details Grid -- */
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .details-grid .detail-card:last-child {
+        grid-column: span 2;
+    }
+    
+    .detail-card {
+        padding: 16px 10px;
+    }
+    
+    .detail-icon {
+        font-size: 1.6rem;
+    }
+    
+    .detail-title {
+        font-size: 0.75rem;
+    }
+    
+    .detail-val {
+        font-size: 0.72rem;
+    }
+    
+    /* -- Story Section -- */
+    .story-card {
+        grid-template-columns: 1fr;
+    }
+    
+    .story-content {
+        padding: 28px 20px;
+    }
+    
+    .story-title {
+        font-size: 1.3rem;
+    }
+    
+    .story-body {
+        font-size: 0.88rem;
+    }
+    
+    .story-footer-script {
+        font-size: 1.6rem;
+    }
+    
+    .story-image-wrap {
+        min-height: 220px;
+    }
+    
+    .stamp-story-immigration {
+        bottom: 12px;
+        right: 12px;
+        padding: 8px 10px;
+        font-size: 0.6rem;
+    }
+    
+    /* -- RSVP Form -- */
+    .rsvp-card {
+        padding: 25px 16px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    
+    .form-group-custom label {
+        font-size: 0.78rem;
+    }
+    
+    .form-control-custom {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-submit-ticket {
+        font-size: 1rem;
+        padding: 14px;
+    }
+    
+    /* -- Bottom Action Bar -- */
+    .bottom-bar {
+        padding: 8px 10px;
+    }
+    
+    .bottom-bar-content {
+        gap: 6px;
+    }
+    
+    .action-btn {
+        padding: 10px 8px;
+        font-size: 0.8rem;
+        min-height: 44px;
+    }
+    
+    .action-btn-text {
+        display: none;
+    }
+    
+    /* -- Modals -- */
+    .modal-overlay {
+        padding: 12px;
+        align-items: flex-start;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .modal-box {
+        padding: 20px 14px;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 14px;
+        margin: auto 0;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .close-modal-btn {
+        top: 10px;
+        right: 14px;
+        font-size: 1.5rem;
+    }
+    
+    .map-iframe-wrap {
+        height: 260px;
+    }
+    
+    .cinema-video-player {
+        max-height: 50vh;
+    }
+    
+    /* Tear-off ticket modal */
+    .tear-pass {
+        flex-direction: column;
+    }
+    
+    .tear-pass .pass-main {
+        padding: 16px 14px;
+    }
+    
+    .tear-pass .pass-stub,
+    .tear-stub-interactive {
+        width: 100%;
+        height: 70px;
+        flex-direction: row;
+    }
+    
+    .tear-stub-interactive.is-torn {
+        transform: translateY(40px) rotate(5deg);
+    }
+    
+    /* -- Floral Borders -- */
     .side-floral-border {
         display: none;
     }
+    
     .card-floral-corner {
         width: 90px;
         height: 90px;
     }
+    
+    /* -- Countdown -- */
+    .countdown-card {
+        padding: 25px 15px;
+        border-radius: 18px;
+    }
+    
+    .countdown-title {
+        font-size: 1.75rem;
+        margin-bottom: 20px;
+    }
+    
+    .countdown-grid {
+        gap: 8px;
+    }
+    
+    .countdown-item {
+        min-width: 72px;
+        padding: 14px 6px;
+        border-radius: 18px;
+    }
+    
+    .countdown-number {
+        font-size: 1.9rem;
+    }
+    
+    .countdown-label {
+        font-size: 0.65rem;
+        letter-spacing: 1px;
+    }
+    
+    /* -- Family Card -- */
+    .family-card {
+        padding: 18px 16px;
+    }
+    
+    .family-section-title {
+        font-size: 1.1rem;
+    }
+    
+    .family-grid {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .family-column {
+        min-width: unset;
+        width: 100%;
+    }
+    
+    .family-name {
+        font-size: 1.05rem;
+    }
+    
+    .family-heart {
+        font-size: 1.2rem;
+    }
+    
+    /* -- Modal Components -- */
+    .modal-title {
+        font-size: 0.95rem;
+    }
+    
+    .modal-title-lg {
+        font-size: 1.15rem;
+    }
+    
+    .modal-desc {
+        font-size: 0.78rem;
+    }
+    
+    .modal-actions {
+        gap: 8px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .modal-actions .action-btn {
+        justify-content: center;
+        font-size: 0.8rem;
+        padding: 10px 14px;
+    }
+    
+    /* -- Tear-Off Ticket -- */
+    .tear-pass-title {
+        font-size: 0.82rem;
+    }
+    
+    .tear-passenger-name {
+        font-size: 1.15rem;
+    }
+    
+    .tear-route {
+        font-size: 0.72rem;
+    }
+    
+    .tear-info-row {
+        gap: 10px;
+        font-size: 0.72rem;
+    }
 }
 
-/* Comprehensive Mobile Styles (< 576px) */
+/* ==========================================================================
+   RESPONSIVE: Small Mobile (~576px)
+   ========================================================================== */
 @media (max-width: 576px) {
-    .top-header {
-        padding: 8px 12px;
+    body {
+        padding-bottom: 68px;
     }
-    .brand-logo-img {
-        height: 58px;
-        transform: translateY(10px);
-    }
-    .logo-monogram:hover .brand-logo-img {
-        transform: translateY(10px) scale(1.05);
-    }
+    
     .container {
-        padding: 0 10px;
+        padding: 0 8px;
     }
+    
+    /* -- Header -- */
+    .top-header {
+        padding: 8px 10px;
+    }
+    
+    .header-right {
+        gap: 6px;
+    }
+    
+    .logo-monogram {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+    
+    .brand-logo-img {
+        height: 52px;
+        transform: translateY(8px);
+    }
+    
+    .logo-monogram:hover .brand-logo-img {
+        transform: translateY(8px) scale(1.05);
+    }
+    
+    .lang-switcher {
+        border-radius: 22px;
+        padding: 2px;
+    }
+    
+    .lang-btn {
+        padding: 4px 7px;
+        font-size: 0.65rem;
+    }
+    
+    .audio-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.75rem;
+    }
+    
+    /* -- Passport -- */
+    .hero-section {
+        padding: 18px 0 12px;
+    }
+    
+    .passport-wrapper {
+        margin-bottom: 16px;
+    }
+    
+    .passport-cover-img-wrap {
+        width: 240px;
+    }
+    
+    .passport-cover-img-wrap:hover {
+        transform: translateY(-4px) scale(1.02);
+    }
+    
+    .passport-open-badge {
+        font-size: 0.6rem;
+        padding: 5px 10px;
+        bottom: 12px;
+        letter-spacing: 0.5px;
+    }
+    
+    .passport-opened {
+        padding: 0;
+    }
+    
+    .page-left {
+        padding: 14px 12px;
+    }
+    
+    .page-right {
+        padding: 14px 12px;
+    }
+    
+    .id-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+    
+    .id-header h4 {
+        font-size: 0.6rem;
+    }
+    
+    .id-grid {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .photo-frame {
+        width: 80px;
+        height: 100px;
+        margin: 0 auto;
+    }
+    
+    .photo-avatar {
+        font-size: 1rem;
+    }
+    
+    .id-details {
+        text-align: center;
+    }
+    
+    .id-val {
+        font-size: 0.75rem;
+    }
+    
+    .mrz-zone {
+        font-size: 0.5rem;
+        letter-spacing: 0.5px;
+        padding: 6px;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .stamp-visa {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        display: inline-block;
+        margin: 10px auto 0;
+        transform: rotate(-8deg);
+    }
+    
+    .play-btn-circle {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
     .hero-subtitle {
-        font-size: 1.4rem;
+        font-size: 1.1rem;
+        margin-top: 14px;
     }
+    
     .hero-desc {
+        font-size: 0.82rem;
+    }
+    
+    /* -- Intro Video Banner -- */
+    .intro-video-banner {
+        font-size: 0.7rem;
+        padding: 7px 12px;
+        gap: 6px;
+    }
+    
+    /* -- Stamp Card -- */
+    .stamp-card {
+        padding: 14px;
+    }
+    
+    .circular-stamp {
+        width: 85px;
+        height: 85px;
+        font-size: 0.55rem;
+    }
+    
+    .lang-greeting {
+        font-size: 0.85rem;
+    }
+    
+    .lang-pill {
+        font-size: 0.6rem;
+        padding: 2px 10px;
+    }
+    
+    /* -- Boarding Pass -- */
+    .section-title {
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        margin-bottom: 14px;
+    }
+    
+    .pass-main {
+        padding: 14px 12px;
+    }
+    
+    .pass-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    
+    .plane-icon {
+        font-size: 1.2rem;
+    }
+    
+    .pass-title {
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .pass-sub {
+        font-size: 0.55rem;
+    }
+    
+    .passenger-name {
+        font-size: 1.1rem;
+    }
+    
+    .route-container {
+        flex-direction: column;
+        gap: 6px;
+        padding: 8px 10px;
+    }
+    
+    .route-line {
+        width: 60%;
+        margin: 4px auto;
+        border-top: none;
+        border-left: 2px dashed var(--burgundy-light);
+        height: 30px;
+    }
+    
+    .route-line::after {
+        top: 50%;
+        left: -8px;
+        transform: translateY(-50%) rotate(90deg);
+    }
+    
+    .city-code {
         font-size: 0.9rem;
     }
-    .passport-opened {
-        padding: 16px 12px;
+    
+    .pass-info-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+        padding-top: 10px;
     }
+    
+    .pass-field-label {
+        font-size: 0.58rem;
+    }
+    
+    .pass-field-val {
+        font-size: 0.78rem;
+    }
+    
+    .pass-stub {
+        height: 65px;
+        padding: 8px 12px;
+    }
+    
+    .stub-vertical-text {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+    }
+    
+    /* -- Details Grid -- */
+    .details-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin: 20px 0;
+    }
+    
+    .details-grid .detail-card:last-child {
+        grid-column: span 2;
+    }
+    
+    .detail-card {
+        padding: 14px 8px;
+        border-radius: 10px;
+    }
+    
+    .detail-icon {
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+    }
+    
+    .detail-title {
+        font-size: 0.68rem;
+    }
+    
+    .detail-val {
+        font-size: 0.68rem;
+    }
+    
+    /* -- Story -- */
+    .story-section {
+        margin: 25px 0;
+    }
+    
+    .story-content {
+        padding: 22px 16px;
+    }
+    
+    .story-title {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+    
+    .story-body {
+        font-size: 0.82rem;
+        line-height: 1.6;
+    }
+    
+    .story-footer-script {
+        font-size: 1.4rem;
+    }
+    
+    .story-image-wrap {
+        min-height: 180px;
+    }
+    
+    .stamp-story-immigration {
+        bottom: 8px;
+        right: 8px;
+        padding: 6px 8px;
+        font-size: 0.55rem;
+    }
+    
+    /* -- RSVP Form -- */
+    .rsvp-section {
+        margin: 25px 0;
+    }
+    
+    .rsvp-card {
+        padding: 20px 12px;
+        border-radius: 12px;
+    }
+    
+    .form-group-custom label {
+        font-size: 0.72rem;
+        margin-bottom: 5px;
+    }
+    
+    .form-control-custom {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+    
+    .btn-submit-ticket {
+        font-size: 0.9rem;
+        padding: 13px 10px;
+        letter-spacing: 1px;
+        border-radius: 6px;
+    }
+    
+    /* -- Bottom Bar -- */
+    .bottom-bar {
+        padding: 6px 8px;
+    }
+    
+    .bottom-bar-content {
+        gap: 5px;
+    }
+    
+    .action-btn {
+        border-radius: 24px;
+        padding: 8px 6px;
+        font-size: 1rem;
+        min-height: 40px;
+        justify-content: center;
+    }
+    
+    /* -- Modals -- */
+    .modal-overlay {
+        padding: 8px;
+    }
+    
+    .modal-box {
+        padding: 16px 10px;
+        border-radius: 12px;
+        max-height: 88vh;
+    }
+    
+    .close-modal-btn {
+        top: 8px;
+        right: 10px;
+        font-size: 1.3rem;
+    }
+    
+    .map-iframe-wrap {
+        height: 220px;
+        border-radius: 8px;
+    }
+    
+    .cinema-video-player {
+        max-height: 40vh;
+        border-radius: 8px;
+    }
+    
+    /* -- Countdown -- */
+    .countdown-subtitle {
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+    }
+    
+    /* -- Card Floral -- */
+    .card-floral-corner {
+        width: 60px;
+        height: 60px;
+    }
+    
+    /* -- Family Card -- */
+    .family-card {
+        padding: 14px 12px;
+    }
+    
+    .family-section-title {
+        font-size: 0.95rem;
+    }
+    
+    .family-name {
+        font-size: 0.95rem;
+    }
+    
+    .family-label {
+        font-size: 0.65rem;
+    }
+    
+    /* -- Modal -- */
+    .modal-title {
+        font-size: 0.85rem;
+    }
+    
+    .modal-title-lg {
+        font-size: 1rem;
+    }
+    
+    .modal-desc {
+        font-size: 0.72rem;
+    }
+    
+    .modal-actions .action-btn {
+        font-size: 0.75rem;
+        padding: 8px 10px;
+    }
+    
+    /* -- Tear-Off Ticket -- */
+    .tear-passenger-name {
+        font-size: 1rem;
+    }
+    
+    .tear-pass-title {
+        font-size: 0.75rem;
+    }
+    
+    .tear-info-row {
+        gap: 8px;
+        font-size: 0.65rem;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE: Extra Small Mobile (~400px)
+   ========================================================================== */
+@media (max-width: 400px) {
+    body {
+        padding-bottom: 60px;
+    }
+    
+    .container {
+        padding: 0 6px;
+    }
+    
+    /* -- Header -- */
+    .top-header {
+        padding: 6px 8px;
+    }
+    
+    .logo-monogram {
+        font-size: 1rem;
+    }
+    
+    .brand-logo-img {
+        height: 44px;
+        transform: translateY(6px);
+    }
+    
+    .lang-btn {
+        padding: 3px 5px;
+        font-size: 0.58rem;
+    }
+    
+    .audio-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 0.7rem;
+    }
+    
+    .header-right {
+        gap: 4px;
+    }
+    
+    /* -- Passport -- */
+    .passport-cover-img-wrap {
+        width: 200px;
+    }
+    
+    .passport-open-badge {
+        font-size: 0.55rem;
+        padding: 4px 8px;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .hero-desc {
+        font-size: 0.75rem;
+    }
+    
+    .id-header h4 {
+        font-size: 0.5rem;
+    }
+    
+    .photo-frame {
+        width: 65px;
+        height: 80px;
+    }
+    
+    .id-val {
+        font-size: 0.68rem;
+    }
+    
+    .id-label {
+        font-size: 0.55rem;
+    }
+    
+    /* -- Boarding Pass -- */
+    .section-title {
+        font-size: 0.85rem;
+    }
+    
+    .pass-title {
+        font-size: 0.68rem;
+    }
+    
+    .passenger-name {
+        font-size: 0.95rem;
+    }
+    
+    .pass-field-val {
+        font-size: 0.7rem;
+    }
+    
+    .pass-info-row {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    /* -- Details Grid -- */
     .details-grid {
         grid-template-columns: 1fr;
+        gap: 6px;
     }
+    
     .details-grid .detail-card:last-child {
         grid-column: span 1;
     }
-    .modal-box {
-        padding: 18px 12px;
-        width: 95%;
-        border-radius: 16px;
+    
+    .detail-card {
+        padding: 12px 8px;
     }
-    .btn-submit-ticket {
-        font-size: 1rem;
-        padding: 14px 16px;
+    
+    /* -- Story -- */
+    .story-content {
+        padding: 16px 12px;
     }
+    
+    .story-title {
+        font-size: 0.95rem;
+    }
+    
+    .story-body {
+        font-size: 0.78rem;
+    }
+    
+    .story-footer-script {
+        font-size: 1.2rem;
+    }
+    
+    /* -- RSVP -- */
     .rsvp-card {
-        padding: 25px 15px;
+        padding: 16px 10px;
+    }
+    
+    .btn-submit-ticket {
+        font-size: 0.82rem;
+        padding: 12px 8px;
+    }
+    
+    /* -- Modals -- */
+    .modal-box {
+        padding: 14px 8px;
+    }
+    
+    .map-iframe-wrap {
+        height: 180px;
+    }
+    
+    /* -- Bottom Bar -- */
+    .bottom-bar {
+        padding: 5px 6px;
+    }
+    
+    .action-btn {
+        padding: 6px 4px;
+        font-size: 0.9rem;
+        min-height: 36px;
+        border-radius: 20px;
+    }
+    
+    /* -- Countdown -- */
+    .countdown-title {
+        font-size: 1.4rem;
+    }
+    
+    .countdown-item {
+        min-width: 60px;
+        padding: 10px 4px;
+        border-radius: 14px;
+    }
+    
+    .countdown-number {
+        font-size: 1.5rem;
+    }
+    
+    .countdown-label {
+        font-size: 0.55rem;
+    }
+    
+    /* -- Card Floral -- */
+    .card-floral-corner {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* ==========================================================================
+   TOUCH DEVICE ENHANCEMENTS
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase touch targets */
+    .action-btn {
+        min-height: 44px;
+    }
+    
+    .lang-btn {
+        min-height: 32px;
+        min-width: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .detail-card {
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(212, 175, 55, 0.2);
+    }
+    
+    /* Disable hover transforms on touch devices */
+    .passport-cover-img-wrap:hover {
+        transform: none;
+    }
+    
+    .detail-card:hover {
+        transform: none;
+        box-shadow: var(--shadow-soft);
+    }
+    
+    .paper-ticket-wrap:hover {
+        transform: none;
+    }
+    
+    .countdown-item:hover {
+        transform: none;
+    }
+    
+    /* Add active states instead */
+    .passport-cover-img-wrap:active {
+        transform: scale(0.98);
+    }
+    
+    .detail-card:active {
+        transform: scale(0.97);
+    }
+    
+    .action-btn:active {
+        transform: scale(0.95);
+        opacity: 0.9;
+    }
+    
+    .btn-submit-ticket:active {
+        transform: scale(0.98);
+    }
+}
+
+/* ==========================================================================
+   LANDSCAPE MOBILE (short viewport height)
+   ========================================================================== */
+@media (max-height: 500px) and (max-width: 900px) {
+    .bottom-bar {
+        padding: 4px 8px;
+    }
+    
+    .action-btn {
+        padding: 4px 8px;
+        min-height: 32px;
+    }
+    
+    .modal-overlay {
+        align-items: flex-start;
+        padding: 4px;
+    }
+    
+    .modal-box {
+        max-height: 95vh;
+    }
+    
+    .hero-section {
+        padding: 10px 0;
+    }
+    
+    .passport-cover-img-wrap {
+        width: 180px;
+    }
+}
+
+/* ==========================================================================
+   SAFE AREA INSETS (Notch / Dynamic Island support)
+   ========================================================================== */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .bottom-bar {
+        padding-bottom: calc(8px + env(safe-area-inset-bottom));
+    }
+    
+    body {
+        padding-bottom: calc(90px + env(safe-area-inset-bottom));
+    }
+    
+    @media (max-width: 768px) {
+        body {
+            padding-bottom: calc(75px + env(safe-area-inset-bottom));
+        }
+    }
+    
+    @media (max-width: 576px) {
+        body {
+            padding-bottom: calc(68px + env(safe-area-inset-bottom));
+        }
     }
 }
 
