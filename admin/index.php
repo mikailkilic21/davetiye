@@ -50,6 +50,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $message = 'Ayarlar başarıyla kaydedildi!';
 }
 
+// RSVP Silme İşlemi
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete_rsvp') {
+    if (!isset($_SESSION['admin_logged_in'])) die('Yetkisiz erişim');
+    $rsvpId = $_POST['rsvp_id'] ?? '';
+    if ($rsvpId) {
+        deleteRSVP($rsvpId);
+        $message = 'Kayıt başarıyla silindi.';
+    }
+}
+
+// RSVP Düzenleme İşlemi
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'edit_rsvp') {
+    if (!isset($_SESSION['admin_logged_in'])) die('Yetkisiz erişim');
+    $rsvpId = $_POST['rsvp_id'] ?? '';
+    if ($rsvpId) {
+        $newData = [
+            'name' => trim($_POST['name'] ?? ''),
+            'attendance' => $_POST['attendance'] ?? 'yes',
+            'guests' => intval($_POST['guests'] ?? 1),
+            'event' => $_POST['event'] ?? 'both',
+            'note' => trim($_POST['note'] ?? '')
+        ];
+        updateRSVP($rsvpId, $newData);
+        $message = 'Kayıt başarıyla güncellendi.';
+    }
+}
+
 $isLoggedIn = !empty($_SESSION['admin_logged_in']);
 $rsvps = getRSVPs();
 $settings = getSettings();
@@ -315,6 +342,7 @@ foreach ($rsvps as $r) {
                                 <th>Etkinlik</th>
                                 <th>Not</th>
                                 <th>Tarih</th>
+                                <th>İşlemler</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -339,6 +367,14 @@ foreach ($rsvps as $r) {
                                     </td>
                                     <td style="max-width:250px; font-size:0.85rem; opacity:0.9;"><?= nl2br(htmlspecialchars($r['note'] ?? '')) ?></td>
                                     <td style="font-size:0.8rem; opacity:0.7;"><?= htmlspecialchars($r['created_at'] ?? '-') ?></td>
+                                    <td>
+                                        <button onclick="openEditModal('<?= htmlspecialchars($r['id'] ?? '') ?>', '<?= htmlspecialchars(addslashes($r['name'] ?? '')) ?>', '<?= htmlspecialchars($r['attendance'] ?? '') ?>', '<?= htmlspecialchars($r['guests'] ?? '1') ?>', '<?= htmlspecialchars($r['event'] ?? '') ?>', '<?= htmlspecialchars(addslashes(str_replace(array("\r", "\n"), array('', '\n'), $r['note'] ?? ''))) ?>')" class="btn" style="padding: 4px 8px; font-size: 0.75rem; margin-right: 4px; min-width: auto;">Düzenle</button>
+                                        <form method="POST" style="display:inline;" onsubmit="return confirm('Bu kaydı silmek istediğinize emin misiniz?');">
+                                            <input type="hidden" name="action" value="delete_rsvp">
+                                            <input type="hidden" name="rsvp_id" value="<?= htmlspecialchars($r['id'] ?? '') ?>">
+                                            <button type="submit" class="btn" style="padding: 4px 8px; font-size: 0.75rem; background: #8a1c1c; min-width: auto;">Sil</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -409,7 +445,69 @@ foreach ($rsvps as $r) {
         <?php endif; ?>
     </div>
 
+    <!-- Edit Modal -->
+    <div id="editModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+        <div style="background:var(--bg-burgundy); padding:30px; border-radius:12px; border:2px solid var(--accent-gold); width:100%; max-width:500px;">
+            <h3 style="margin-bottom:20px; color:var(--accent-gold);">Kayıt Düzenle</h3>
+            <form method="POST">
+                <input type="hidden" name="action" value="edit_rsvp">
+                <input type="hidden" name="rsvp_id" id="edit_rsvp_id">
+                
+                <div class="form-group">
+                    <label>Ad Soyad</label>
+                    <input type="text" name="name" id="edit_name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Durum</label>
+                    <select name="attendance" id="edit_attendance" style="width:100%; padding:12px; border-radius:6px; background:rgba(255,255,255,0.1); border:1px solid var(--border-color); color:var(--text-light);">
+                        <option value="yes">Gelecek</option>
+                        <option value="no">Gelemeyecek</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Kişi Sayısı</label>
+                    <input type="number" name="guests" id="edit_guests" min="1" max="10" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Etkinlik</label>
+                    <select name="event" id="edit_event" style="width:100%; padding:12px; border-radius:6px; background:rgba(255,255,255,0.1); border:1px solid var(--border-color); color:var(--text-light);">
+                        <option value="both">Kına & Düğün</option>
+                        <option value="kina">Sadece Kına</option>
+                        <option value="dugun">Sadece Düğün</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Not</label>
+                    <textarea name="note" id="edit_note" rows="3"></textarea>
+                </div>
+                
+                <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+                    <button type="button" class="btn" style="background:#555;" onclick="closeEditModal()">İptal</button>
+                    <button type="submit" class="btn">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
+        function openEditModal(id, name, attendance, guests, event, note) {
+            document.getElementById('edit_rsvp_id').value = id;
+            document.getElementById('edit_name').value = name;
+            document.getElementById('edit_attendance').value = attendance;
+            document.getElementById('edit_guests').value = guests;
+            document.getElementById('edit_event').value = event;
+            document.getElementById('edit_note').value = note.replace(/\\n/g, '\n');
+            document.getElementById('editModal').style.display = 'flex';
+        }
+        
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+
         function switchTab(tabId) {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));

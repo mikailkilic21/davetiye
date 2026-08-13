@@ -90,3 +90,24 @@ function saveRSVP($rsvpData) {
     file_put_contents(RSVP_FILE, json_encode($rsvps, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     return $rsvpData;
 }
+
+function deleteRSVP($id) {
+    $rsvps = getRSVPs();
+    $rsvps = array_filter($rsvps, function($r) use ($id) { return isset($r['id']) && $r['id'] !== $id; });
+    file_put_contents(RSVP_FILE, json_encode(array_values($rsvps), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+}
+
+function updateRSVP($id, $newData) {
+    $rsvps = getRSVPs();
+    foreach ($rsvps as &$r) {
+        if (isset($r['id']) && $r['id'] === $id) {
+            $r['name'] = $newData['name'] ?? $r['name'];
+            $r['attendance'] = $newData['attendance'] ?? $r['attendance'];
+            $r['guests'] = $newData['guests'] ?? $r['guests'];
+            $r['event'] = $newData['event'] ?? $r['event'];
+            $r['note'] = $newData['note'] ?? $r['note'];
+            break;
+        }
+    }
+    file_put_contents(RSVP_FILE, json_encode($rsvps, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+}

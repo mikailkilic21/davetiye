@@ -239,7 +239,7 @@ $settings = getSettings();
                 <!-- 5. RSVP -->
                 <div class="detail-card" onclick="document.getElementById('rsvpSection').scrollIntoView({behavior:'smooth'})">
                     <div class="detail-icon">✉️</div>
-                    <div class="detail-title" data-i18n="detail_rsvp_title">RSVP</div>
+                    <div class="detail-title" data-i18n="detail_rsvp_title">KATILIM FORMU</div>
                     <div class="detail-val" data-i18n="detail_rsvp_val" data-i18n-target="html">
                         Katılım Formu<br><small>Katılımınızı bekliyoruz</small>
                     </div>
@@ -278,7 +278,7 @@ $settings = getSettings();
         <!-- RSVP Form Section & Interactive Ticket Generator -->
         <section class="rsvp-section" id="rsvpSection">
             <div class="rsvp-card">
-                <h2 class="section-title" data-i18n="rsvp_title">LÜTFEN KATILIM DURUMUNUZU BİLDİRİN (RSVP)</h2>
+                <h2 class="section-title" data-i18n="rsvp_title">LÜTFEN KATILIM DURUMUNUZU BİLDİRİN</h2>
                 
                 <form id="rsvpForm">
                     <div class="form-row">
@@ -336,7 +336,7 @@ $settings = getSettings();
             <button class="action-btn" onclick="document.getElementById('rsvpSection').scrollIntoView({behavior:'smooth'})">
                 <span style="font-size:1.2rem;">✉️</span>
                 <div class="action-btn-text">
-                    <span class="action-title-lbl" data-i18n="bottom_rsvp">RSVP</span>
+                    <span class="action-title-lbl" data-i18n="bottom_rsvp">KATILIM FORMU</span>
                     <span class="action-sub-lbl" data-i18n="bottom_rsvp_sub">Katılacağım</span>
                 </div>
             </button>
@@ -502,6 +502,6 @@ $settings = getSettings();
     </div>
 
     <!-- JavaScript -->
-    <script src="assets/js/main.js?v=2"></script>
+    <script src="assets/js/main.js?v=3"></script>
 </body>
 </html>
