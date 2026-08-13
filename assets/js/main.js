@@ -512,115 +512,152 @@ function downloadTicketImage() {
     const passenger = document.getElementById('ticketPassengerName').textContent || 'Sayın Misafirimiz';
     const seat = document.getElementById('ticketSeat').textContent || '01A';
     const gate = document.getElementById('ticketGate').textContent || 'LOV27';
-    const guests = document.getElementById('ticketGuests').textContent || '1 PAX';
-    const ticketClass = document.getElementById('ticketClass').textContent || 'FIRST CLASS';
+    let ticketClassEl = document.getElementById('ticketClass');
+    const ticketClass = ticketClassEl ? ticketClassEl.textContent : 'FIRST CLASS';
 
     const canvas = document.createElement('canvas');
     canvas.width = 900;
     canvas.height = 400;
     const ctx = canvas.getContext('2d');
 
-    // 1. Parchment Card Background
-    ctx.fillStyle = '#f5ece1';
+    // 1. Ticket Background
+    ctx.fillStyle = '#f4f5f5';
     ctx.fillRect(0, 0, 900, 400);
 
-    // 2. Gold Outer Border
-    ctx.strokeStyle = '#d4af37';
-    ctx.lineWidth = 6;
-    ctx.strokeRect(0, 0, 900, 400);
-
-    // 3. Header Bar (Burgundy)
-    ctx.fillStyle = '#26050a';
-    ctx.fillRect(0, 0, 900, 70);
+    // 2. Header Bar (Light Blue)
+    ctx.fillStyle = '#1ab0cf';
+    ctx.fillRect(0, 0, 900, 60);
 
     // Header Text
-    ctx.fillStyle = '#d4af37';
-    ctx.font = 'bold 22px serif';
-    ctx.fillText('✈ BOARDING PASS — BÜŞRA & EMİR DÜĞÜN BİLETİ', 30, 44);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 24px sans-serif';
+    ctx.fillText('BOARDING PASS', 30, 40);
+    ctx.fillText(ticketClass, 670, 40);
 
-    ctx.font = 'bold 15px sans-serif';
-    ctx.fillStyle = '#fcf6ba';
-    ctx.fillText(ticketClass, 700, 44);
-
-    // 4. Passenger Details
-    ctx.fillStyle = '#7a5e4b';
-    ctx.font = 'bold 13px sans-serif';
-    ctx.fillText('PASSENGER NAME / YOLCU ADI', 40, 120);
-
-    ctx.fillStyle = '#140204';
-    ctx.font = 'bold 26px serif';
-    ctx.fillText(passenger + ' ♥', 40, 155);
-
-    // Flight Route
-    ctx.fillStyle = '#7a5e4b';
-    ctx.font = '14px sans-serif';
-    ctx.fillText('FROM: SEVGİ (LOVE)  ➔  TO: SONSUZLUK (FOREVER)', 40, 198);
-    ctx.fillText('TARİH: 26 & 27 Ağustos 2026 | Diyarbakır Çırağan Salonu', 40, 226);
-
-    // Dotted Divider Line
-    ctx.strokeStyle = '#d9c4aa';
-    ctx.lineWidth = 2;
-    ctx.setLineDash([8, 6]);
-    ctx.beginPath();
-    ctx.moveTo(40, 255);
-    ctx.lineTo(660, 255);
-    ctx.stroke();
-    ctx.setLineDash([]);
-
-    // Ticket Stats (Gate, Seat, Pax)
-    ctx.fillStyle = '#7a5e4b';
-    ctx.font = '12px sans-serif';
-    ctx.fillText('GATE', 40, 290);
-    ctx.fillText('SEAT', 160, 290);
-    ctx.fillText('PAX', 280, 290);
-    ctx.fillText('DURUM', 400, 290);
-
-    ctx.fillStyle = '#140204';
-    ctx.font = 'bold 20px serif';
-    ctx.fillText(gate, 40, 320);
-    ctx.fillText(seat, 160, 320);
-    ctx.fillText(guests, 280, 320);
-    ctx.fillStyle = '#8b1d24';
-    ctx.fillText('ONAYLANDI ♥', 400, 320);
-
-    // Vertical Perforated Tear Line
-    ctx.strokeStyle = '#aa771c';
-    ctx.lineWidth = 3;
-    ctx.setLineDash([10, 8]);
-    ctx.beginPath();
-    ctx.moveTo(680, 70);
-    ctx.lineTo(680, 400);
-    ctx.stroke();
-    ctx.setLineDash([]);
-
-    // Stub Area (Right side)
-    ctx.fillStyle = '#26050a';
-    ctx.fillRect(681, 70, 219, 330);
-
-    ctx.fillStyle = '#d4af37';
-    ctx.font = 'bold 18px serif';
-    ctx.fillText('BÜŞRA & EMİR', 705, 120);
-
-    ctx.font = '13px sans-serif';
-    ctx.fillStyle = '#f5ece1';
-    ctx.fillText('27 AUG 2026', 705, 150);
-
-    // Barcode Simulation
-    ctx.fillStyle = '#d4af37';
-    const barWidths = [4, 8, 3, 10, 5, 2, 8, 4, 7, 3, 9, 4, 6, 2, 8, 5];
-    let curX = 705;
-    for (let i = 0; i < barWidths.length; i++) {
-        ctx.fillRect(curX, 200, barWidths[i], 110);
-        curX += barWidths[i] + 4;
+    // 3. Vertical Barcode (Left Edge)
+    ctx.fillStyle = '#333333';
+    const vBarWidths = [4, 8, 3, 10, 5, 2, 8, 4, 7, 3, 9, 4, 6, 2, 8, 5, 3, 6, 2, 8, 4];
+    let curY = 80;
+    for (let i = 0; i < vBarWidths.length; i++) {
+        ctx.fillRect(30, curY, 35, vBarWidths[i] * 1.5);
+        curY += (vBarWidths[i] * 1.5) + 6;
     }
 
-    ctx.font = '12px monospace';
-    ctx.fillStyle = '#d4af37';
-    ctx.fillText('LOV-2026-2708', 705, 340);
+    // 4. Passenger Details (Main Pass)
+    ctx.fillStyle = '#777777';
+    ctx.font = '14px sans-serif';
+    ctx.fillText('PASSENGER', 100, 110);
+    ctx.fillText('DATE', 350, 110);
+    ctx.fillText('TIME', 500, 110);
+
+    ctx.fillStyle = '#111111';
+    ctx.font = 'bold 22px sans-serif';
+    ctx.fillText(passenger.toUpperCase(), 100, 140);
+    ctx.fillText('AUG 27, 2026', 350, 140);
+    ctx.fillText('19:00', 500, 140);
+
+    // Flight Route (Large)
+    ctx.fillStyle = '#777777';
+    ctx.font = '14px sans-serif';
+    ctx.fillText('FROM', 100, 200);
+    ctx.fillText('TO', 400, 200);
+
+    ctx.fillStyle = '#111111';
+    ctx.font = 'bold 50px sans-serif';
+    ctx.fillText('LOVE', 100, 255);
+    ctx.fillText('FOREVER', 400, 255);
+    
+    // Plane Icon (Simple triangle/shape simulation or text)
+    ctx.fillStyle = '#1ab0cf';
+    ctx.font = 'bold 50px sans-serif';
+    ctx.fillText('✈', 300, 255);
+
+    // Divider Line (Bottom row)
+    ctx.strokeStyle = '#dddddd';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(100, 290);
+    ctx.lineTo(600, 290);
+    ctx.stroke();
+
+    // Flight Stats
+    ctx.fillStyle = '#777777';
+    ctx.font = '14px sans-serif';
+    ctx.fillText('FLIGHT', 100, 320);
+    ctx.fillText('GATE', 250, 320);
+    ctx.fillText('TERMINAL', 400, 320);
+    ctx.fillText('SEAT', 550, 320);
+
+    ctx.fillStyle = '#111111';
+    ctx.font = 'bold 22px sans-serif';
+    ctx.fillText('BE 2026', 100, 350);
+    ctx.fillText(gate, 250, 350);
+    ctx.fillText('01', 400, 350);
+    ctx.fillText(seat, 550, 350);
+
+    ctx.fillStyle = '#999999';
+    ctx.font = '11px sans-serif';
+    ctx.fillText('GATE CLOSES 30 MINUTES BEFORE DEPARTURE', 100, 385);
+
+    // Vertical Perforated Tear Line
+    ctx.strokeStyle = '#cccccc';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([8, 8]);
+    ctx.beginPath();
+    ctx.moveTo(650, 0);
+    ctx.lineTo(650, 400);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    
+    // White border trick
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(652, 0, 2, 400);
+
+    // 5. Stub Area (Right side)
+    ctx.fillStyle = '#777777';
+    ctx.font = '12px sans-serif';
+    ctx.fillText('PASSENGER', 670, 100);
+    ctx.fillText('FROM', 670, 160);
+    ctx.fillText('TO', 670, 190);
+    ctx.fillText('DATE', 780, 160);
+    ctx.fillText('TIME', 780, 190);
+
+    ctx.fillStyle = '#111111';
+    ctx.font = 'bold 16px sans-serif';
+    ctx.fillText(passenger.toUpperCase(), 670, 125);
+    ctx.fillText('LOVE', 715, 160);
+    ctx.fillText('FOREVER', 695, 190);
+    ctx.fillText('AUG 27', 820, 160);
+    ctx.fillText('19:00', 820, 190);
+
+    ctx.fillStyle = '#777777';
+    ctx.font = '12px sans-serif';
+    ctx.fillText('FLIGHT', 670, 240);
+    ctx.fillText('GATE', 760, 240);
+    ctx.fillText('SEAT', 830, 240);
+
+    ctx.fillStyle = '#111111';
+    ctx.font = 'bold 16px sans-serif';
+    ctx.fillText('BE 2026', 670, 265);
+    ctx.fillText(gate, 760, 265);
+    ctx.fillText(seat, 830, 265);
+
+    // Horizontal Barcode (Stub)
+    ctx.fillStyle = '#333333';
+    const hBarWidths = [4, 8, 3, 10, 5, 2, 8, 4, 7, 3, 9, 4, 6, 2, 8, 5, 4, 9, 3, 2];
+    let curX = 670;
+    for (let i = 0; i < hBarWidths.length; i++) {
+        ctx.fillRect(curX, 320, hBarWidths[i] * 1.5, 40);
+        curX += (hBarWidths[i] * 1.5) + 4;
+    }
+    
+    ctx.fillStyle = '#777777';
+    ctx.font = '10px sans-serif';
+    ctx.fillText('✂ KOPAR', 750, 380);
 
     // Trigger Download
     const link = document.createElement('a');
-    link.download = 'Busra_Emir_Dugun_Bileti_' + passenger.replace(/\s+/g, '_') + '.png';
+    link.download = 'Busra_Emir_Ucak_Bileti_' + passenger.replace(/\s+/g, '_') + '.png';
     link.href = canvas.toDataURL('image/png');
     document.body.appendChild(link);
     link.click();

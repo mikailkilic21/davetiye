@@ -24,7 +24,7 @@ $settings = getSettings();
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css?v=7">
+    <link rel="stylesheet" href="assets/css/style.css?v=8">
 </head>
 <body>
 
@@ -433,7 +433,7 @@ $settings = getSettings();
                     </div>
 
                     <div class="pass-stub tear-stub-interactive" id="ticketStubInteractive" onclick="tearTicketStub()" title="Tıklayın veya Çekin: Bileti Kopar!">
-                        <div class="boarding-header">FIRST CLASS</div>
+                        <div class="boarding-header" id="ticketClass">FIRST CLASS</div>
                         <div class="boarding-stub-body">
                             <div class="boarding-field">
                                 <div class="boarding-label">PASSENGER</div>
@@ -574,6 +574,6 @@ $settings = getSettings();
     </div>
 
     <!-- JavaScript -->
-    <script src="assets/js/main.js?v=3"></script>
+    <script src="assets/js/main.js?v=4"></script>
 </body>
 </html>
