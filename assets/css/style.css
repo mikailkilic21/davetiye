@@ -423,7 +423,7 @@ body {
     box-shadow: var(--shadow-deep);
     border: 3px solid var(--burgundy-dark);
     overflow: hidden;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     color: var(--parchment-text);
 }
 
