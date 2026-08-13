@@ -417,7 +417,8 @@ body {
 .passport-opened {
     display: none;
     width: 100%;
-    max-width: 900px;
+    max-width: 680px;
+    margin: 0 auto;
     background: var(--parchment-bg);
     border-radius: 12px;
     box-shadow: var(--shadow-deep);
