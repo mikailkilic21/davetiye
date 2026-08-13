@@ -1268,7 +1268,7 @@ body {
     user-select: none;
     font-family: Arial, sans-serif;
     width: 100%;
-    max-width: 650px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -1391,10 +1391,21 @@ body {
 
 /* Perforated Divider */
 .perforated-divider {
-    width: 2px;
-    background: repeating-linear-gradient(to bottom, #ddd, #ddd 6px, transparent 6px, transparent 12px);
+    width: 1px;
+    border-left: 2px dashed #999;
     position: relative;
     z-index: 2;
+    margin: 0 10px;
+}
+.perforated-divider::after {
+    content: '✂';
+    position: absolute;
+    top: 50%;
+    left: -7px;
+    color: #888;
+    background: #f4f5f5;
+    padding: 10px 0;
+    font-size: 16px;
 }
 
 /* Right Stub */
@@ -1404,8 +1415,7 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    border-left: 1px solid #fff;
-    min-width: 140px;
+    min-width: 180px;
 }
 
 .pass-stub .boarding-header {
