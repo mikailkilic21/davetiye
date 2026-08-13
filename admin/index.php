@@ -368,6 +368,7 @@ foreach ($rsvps as $r) {
                                     <td style="max-width:250px; font-size:0.85rem; opacity:0.9;"><?= nl2br(htmlspecialchars($r['note'] ?? '')) ?></td>
                                     <td style="font-size:0.8rem; opacity:0.7;"><?= htmlspecialchars($r['created_at'] ?? '-') ?></td>
                                     <td>
+                                        <button onclick="openTicketViewModal('<?= htmlspecialchars($r['id'] ?? '') ?>')" class="btn" style="padding: 4px 8px; font-size: 0.75rem; margin-right: 4px; min-width: auto; background: var(--accent-gold); color: #000;">🎫 Bilet</button>
                                         <button onclick="openEditModal('<?= htmlspecialchars($r['id'] ?? '') ?>', '<?= htmlspecialchars(addslashes($r['name'] ?? '')) ?>', '<?= htmlspecialchars($r['attendance'] ?? '') ?>', '<?= htmlspecialchars($r['guests'] ?? '1') ?>', '<?= htmlspecialchars($r['event'] ?? '') ?>', '<?= htmlspecialchars(addslashes(str_replace(array("\r", "\n"), array('', '\n'), $r['note'] ?? ''))) ?>')" class="btn" style="padding: 4px 8px; font-size: 0.75rem; margin-right: 4px; min-width: auto;">Düzenle</button>
                                         <form method="POST" style="display:inline;" onsubmit="return confirm('Bu kaydı silmek istediğinize emin misiniz?');">
                                             <input type="hidden" name="action" value="delete_rsvp">
@@ -493,7 +494,25 @@ foreach ($rsvps as $r) {
         </div>
     </div>
 
+    <!-- Ticket View Modal -->
+    <div id="ticketViewModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center;">
+        <div style="position:relative; width:90%; max-width:800px; height:80%; max-height:500px; background:transparent;">
+            <button onclick="closeTicketViewModal()" style="position:absolute; top:-40px; right:-20px; background:none; border:none; color:white; font-size:2rem; cursor:pointer;">&times;</button>
+            <iframe id="ticketIframe" src="" style="width:100%; height:100%; border:none; background:transparent;"></iframe>
+        </div>
+    </div>
+
     <script>
+        function openTicketViewModal(id) {
+            document.getElementById('ticketIframe').src = 'view_ticket.php?id=' + id;
+            document.getElementById('ticketViewModal').style.display = 'flex';
+        }
+        
+        function closeTicketViewModal() {
+            document.getElementById('ticketViewModal').style.display = 'none';
+            document.getElementById('ticketIframe').src = '';
+        }
+
         function openEditModal(id, name, attendance, guests, event, note) {
             document.getElementById('edit_rsvp_id').value = id;
             document.getElementById('edit_name').value = name;
