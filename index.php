@@ -68,67 +68,23 @@ $settings = getSettings();
                         </div>
                     </div>
 
-                    <!-- Açık Pasaport Sayfaları (3D Flip View) -->
-                    <div class="passport-opened" id="passportOpened" onclick="togglePassport()">
-                        <!-- Sol Sayfa: Pasaport Kimlik & Vize -->
-                        <div class="page-left">
-                            <div class="id-header">
-                                <h4>PASAPORT / PASSPORT / REISEPASS</h4>
-                                <span style="font-size:0.7rem; font-weight:bold; color:var(--burgundy-dark);">TURKEY</span>
-                            </div>
-                            
-                            <div class="id-grid">
-                                <div class="photo-frame">
-                                    <div class="photo-avatar-seal-wrap">
-                                        <img src="assets/images/logo_be.png" alt="Büşra & Emir Mühür" class="passport-photo-seal-img">
-                                    </div>
-                                    <span style="font-size:0.6rem; margin-top:4px; color:var(--burgundy-dark); font-weight:bold;">OFFICIAL</span>
-                                </div>
-                                
-                                <div class="id-details">
-                                    <div class="id-field">
-                                        <div class="id-label">YOLCULAR / PASSENGERS</div>
-                                        <div class="id-val">Büşra & Emir</div>
-                                    </div>
-                                    <div class="id-field">
-                                        <div class="id-label" data-i18n="bride_family_label">GELİN AİLESİ</div>
-                                        <div class="id-val"><?= htmlspecialchars($settings['bride_family']) ?></div>
-                                    </div>
-                                    <div class="id-field">
-                                        <div class="id-label" data-i18n="groom_family_label">DAMAT AİLESİ</div>
-                                        <div class="id-val"><?= htmlspecialchars($settings['groom_family']) ?></div>
-                                    </div>
-                                    <div class="id-field">
-                                        <div class="id-label">TARİH / DATE</div>
-                                        <div class="id-val">27 AUG 2026</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="stamp-visa">VISA APPROVED ♥</div>
-                            
-                            <div class="mrz-zone">
-                                P&lt;TURBUSRA&lt;&lt;EMIR&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br>
-                                LOV202627088TUR8608272M2608277&lt;&lt;&lt;&lt;06
+                    <!-- Açık Pasaport Sayfaları (Tek Görsel ve Altında Video) -->
+                    <div class="passport-opened" id="passportOpened" onclick="event.stopPropagation();">
+                        <img src="pasaport-open.png" alt="Açık Pasaport" style="width: 100%; height: auto; display: block; border-radius: 6px; margin-bottom: 15px;" onclick="togglePassport()">
+                        
+                        <div class="video-container">
+                            <video id="passportVideo" class="passport-video-element" poster="1.png" controls preload="auto">
+                                <source src="intro.mp4" type="video/mp4">
+                                <source src="assets/videos/intro.mp4" type="video/mp4">
+                                <source src="<?= htmlspecialchars($settings['hero_video']) ?>" type="video/mp4">
+                            </video>
+                            <div class="play-overlay" id="passportVideoOverlay" onclick="playPassportVideo()">
+                                <div class="play-btn-circle">▶</div>
                             </div>
                         </div>
-
-                        <!-- Sağ Sayfa: Tanıtım Videosu -->
-                        <div class="page-right">
-                            <div class="video-container">
-                                <video id="passportVideo" class="passport-video-element" poster="1.png" controls preload="auto">
-                                    <source src="intro.mp4" type="video/mp4">
-                                    <source src="assets/videos/intro.mp4" type="video/mp4">
-                                    <source src="<?= htmlspecialchars($settings['hero_video']) ?>" type="video/mp4">
-                                </video>
-                                <div class="play-overlay" id="passportVideoOverlay" onclick="playPassportVideo()">
-                                    <div class="play-btn-circle">▶</div>
-                                </div>
-                            </div>
-                            <p style="font-size:0.75rem; text-align:center; margin-top:8px; color:var(--parchment-sub);">
-                                🎬 Aşk Yolculuğumuz Tanıtım Filmi
-                            </p>
-                        </div>
+                        <p style="font-size:0.75rem; text-align:center; margin-top:8px; color:var(--parchment-sub);">
+                            🎬 Aşk Yolculuğumuz Tanıtım Filmi
+                        </p>
                     </div>
 
                 </div>
