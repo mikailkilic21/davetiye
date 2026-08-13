@@ -374,31 +374,103 @@ $settings = getSettings();
             <div class="tear-container" id="souvenirTicketCard">
                 <div class="tear-pass">
                     <div class="pass-main tear-pass-main">
-                        <div class="tear-pass-header">
-                            <span class="tear-pass-title">BOARDING PASS</span>
-                            <span class="tear-pass-class" id="ticketClass">FIRST CLASS</span>
-                        </div>
-                        
-                        <div class="tear-passenger-name" id="ticketPassengerName">
-                            Katılımcı Adı
-                        </div>
-                        
-                        <div class="tear-route">
-                            FROM: <strong>LOVE</strong> → TO: <strong>FOREVER</strong>
-                        </div>
-
-                        <div class="tear-info-row">
-                            <div>GATE: <strong id="ticketGate">LOV27</strong></div>
-                            <div>SEAT: <strong id="ticketSeat">01A</strong></div>
-                            <div>PAX: <strong id="ticketGuests">1 PAX</strong></div>
+                        <div class="boarding-header">BOARDING PASS</div>
+                        <div class="boarding-body">
+                            <div class="boarding-barcode-vertical"></div>
+                            <div class="boarding-content">
+                                <div class="boarding-row-top">
+                                    <div class="boarding-field">
+                                        <div class="boarding-label">PASSENGER</div>
+                                        <div class="boarding-value" id="ticketPassengerName">Katılımcı Adı</div>
+                                    </div>
+                                    <div class="boarding-field" style="margin-left:auto; margin-right:40px;">
+                                        <div class="boarding-label">DATE</div>
+                                        <div class="boarding-value">AUG 27, 2026</div>
+                                    </div>
+                                    <div class="boarding-field">
+                                        <div class="boarding-label">TIME</div>
+                                        <div class="boarding-value">19:00</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="boarding-route-large">
+                                    <div class="route-city">
+                                        <div class="route-label">FROM</div>
+                                        <div class="route-code">LOVE</div>
+                                    </div>
+                                    <div class="route-icon">✈</div>
+                                    <div class="route-city">
+                                        <div class="route-label">TO</div>
+                                        <div class="route-code">FOREVER</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="boarding-row-bottom">
+                                    <div class="boarding-field">
+                                        <div class="boarding-label">FLIGHT</div>
+                                        <div class="boarding-value">BE 2026</div>
+                                    </div>
+                                    <div class="boarding-field">
+                                        <div class="boarding-label">GATE</div>
+                                        <div class="boarding-value" id="ticketGate">LOV27</div>
+                                    </div>
+                                    <div class="boarding-field">
+                                        <div class="boarding-label">TERMINAL</div>
+                                        <div class="boarding-value">01</div>
+                                    </div>
+                                    <div class="boarding-field">
+                                        <div class="boarding-label">SEAT</div>
+                                        <div class="boarding-value" id="ticketSeat">01A</div>
+                                    </div>
+                                    <div class="boarding-field">
+                                        <div class="boarding-label" style="opacity: 0;">PAX</div>
+                                        <div class="boarding-value" id="ticketGuests" style="display:none;">1</div>
+                                    </div>
+                                </div>
+                                <div class="boarding-footer">GATE CLOSES 30 MINUTES BEFORE DEPARTURE</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="perforated-divider"></div>
-
                     <div class="pass-stub tear-stub-interactive" id="ticketStubInteractive" onclick="tearTicketStub()" title="Tıklayın veya Çekin: Bileti Kopar!">
-                        <div class="stub-vertical-text">LOVE • FOREVER</div>
-                        <div style="font-size:0.65rem; color:var(--gold-primary);">✂️ KOPAR</div>
+                        <div class="boarding-header">FIRST CLASS</div>
+                        <div class="boarding-stub-body">
+                            <div class="boarding-field">
+                                <div class="boarding-label">PASSENGER</div>
+                                <div class="boarding-value stub-passenger">Katılımcı Adı</div>
+                            </div>
+                            <div class="boarding-field" style="margin-top:15px; display:flex; justify-content:space-between; gap:10px;">
+                                <div>
+                                    <div class="boarding-label" style="font-size:0.55rem; color:#777; margin-bottom:2px;">FROM <strong style="color:#000; font-size:0.75rem;">LOVE</strong></div>
+                                    <div class="boarding-label" style="font-size:0.55rem; color:#777;">TO <strong style="color:#000; font-size:0.75rem;">FOREVER</strong></div>
+                                </div>
+                                <div style="text-align:right;">
+                                    <div class="boarding-label" style="font-size:0.55rem; color:#777; margin-bottom:2px;">DATE <strong style="color:#000; font-size:0.75rem;">AUG 27, 2026</strong></div>
+                                    <div class="boarding-label" style="font-size:0.55rem; color:#777;">TIME <strong style="color:#000; font-size:0.75rem;">19:00</strong></div>
+                                </div>
+                            </div>
+                            
+                            <div class="stub-row-bottom">
+                                <div class="boarding-field">
+                                    <div class="boarding-label">FLIGHT</div>
+                                    <div class="boarding-value" style="font-size:0.7rem;">BE 2026</div>
+                                </div>
+                                <div class="boarding-field">
+                                    <div class="boarding-label">TERM</div>
+                                    <div class="boarding-value" style="font-size:0.7rem;">01</div>
+                                </div>
+                                <div class="boarding-field">
+                                    <div class="boarding-label">GATE</div>
+                                    <div class="boarding-value stub-gate" style="font-size:0.7rem;">LOV27</div>
+                                </div>
+                                <div class="boarding-field">
+                                    <div class="boarding-label">SEAT</div>
+                                    <div class="boarding-value stub-seat" style="font-size:0.7rem;">01A</div>
+                                </div>
+                            </div>
+                            <div class="boarding-barcode-horizontal"></div>
+                            <div style="text-align:center; font-size:0.55rem; color:var(--text-dark); margin-top:5px; opacity:0.6;">✂️ KOPAR</div>
+                        </div>
                     </div>
                 </div>
             </div>

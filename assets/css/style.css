@@ -1249,30 +1249,213 @@ body {
     cursor: pointer;
 }
 
-/* Tear-Off Ticket Interactive Styles */
+/* ==========================================================================
+   BOARDING PASS TICKET UI OVERHAUL
+   ========================================================================== */
 .tear-container {
     margin: 25px 0;
     position: relative;
 }
 
 .tear-pass {
-    background: var(--parchment-bg);
-    color: var(--parchment-text);
+    background: #f4f5f5;
+    color: #333;
     border-radius: 12px;
     display: flex;
     overflow: hidden;
-    box-shadow: var(--shadow-deep);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
     position: relative;
     user-select: none;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
 }
 
+.pass-main {
+    flex: 2.5;
+    background: #f4f5f5;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.boarding-header {
+    background: #1ab0cf;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.boarding-body {
+    display: flex;
+    padding: 15px;
+    position: relative;
+}
+
+.boarding-barcode-vertical {
+    width: 25px;
+    height: 180px;
+    background: repeating-linear-gradient(
+      to bottom,
+      #333,
+      #333 3px,
+      transparent 3px,
+      transparent 5px,
+      #333 5px,
+      #333 6px,
+      transparent 6px,
+      transparent 9px,
+      #333 9px,
+      #333 13px,
+      transparent 13px,
+      transparent 15px
+    );
+    margin-right: 15px;
+    opacity: 0.85;
+}
+
+.boarding-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.boarding-row-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.boarding-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.boarding-label {
+    font-size: 0.55rem;
+    color: #777;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+}
+
+.boarding-value {
+    font-size: 0.85rem;
+    color: #111;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.boarding-route-large {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.route-city {
+    display: flex;
+    flex-direction: column;
+}
+
+.route-code {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #111;
+    line-height: 1;
+}
+
+.route-icon {
+    font-size: 2.5rem;
+    color: #1ab0cf;
+    transform: rotate(45deg);
+}
+
+.boarding-row-bottom {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.boarding-footer {
+    font-size: 0.55rem;
+    color: #999;
+    text-transform: uppercase;
+}
+
+/* Perforated Divider */
+.perforated-divider {
+    width: 2px;
+    background: repeating-linear-gradient(to bottom, #ddd, #ddd 6px, transparent 6px, transparent 12px);
+    position: relative;
+    z-index: 2;
+}
+
+/* Right Stub */
+.pass-stub {
+    flex: 1;
+    background: #f4f5f5;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #fff;
+    min-width: 140px;
+}
+
+.pass-stub .boarding-header {
+    background: #1ab0cf;
+    font-size: 0.95rem;
+}
+
+.boarding-stub-body {
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.stub-row-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.boarding-barcode-horizontal {
+    margin-top: auto;
+    height: 25px;
+    background: repeating-linear-gradient(
+      to right,
+      #333,
+      #333 3px,
+      transparent 3px,
+      transparent 5px,
+      #333 5px,
+      #333 6px,
+      transparent 6px,
+      transparent 9px,
+      #333 9px,
+      #333 13px,
+      transparent 13px,
+      transparent 15px
+    );
+    opacity: 0.85;
+}
+
+/* Interactivity */
 .tear-stub-interactive {
     transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s;
     cursor: grab;
 }
 
 .tear-stub-interactive.is-torn {
-    transform: translateX(60px) rotate(15deg);
+    transform: translateX(60px) translateY(20px) rotate(15deg);
     opacity: 0.95;
     box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
 }
@@ -1374,55 +1557,6 @@ body {
 .action-btn-gold {
     background: var(--gold-metallic);
     color: #1a0307;
-}
-
-/* ==========================================================================
-   TEAR-OFF TICKET MODAL COMPONENTS
-   ========================================================================== */
-.tear-pass-main {
-    text-align: left;
-}
-
-.tear-pass-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.tear-pass-title {
-    font-family: var(--font-heading);
-    font-weight: bold;
-    color: var(--burgundy-dark);
-    font-size: 0.95rem;
-}
-
-.tear-pass-class {
-    font-size: 0.75rem;
-    color: var(--parchment-sub);
-}
-
-.tear-passenger-name {
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: var(--burgundy-dark);
-}
-
-.tear-route {
-    font-size: 0.8rem;
-    color: var(--parchment-sub);
-    margin: 6px 0;
-}
-
-.tear-info-row {
-    display: flex;
-    gap: 15px;
-    font-size: 0.8rem;
-    margin-top: 10px;
-    border-top: 1px solid var(--parchment-border);
-    padding-top: 8px;
-    flex-wrap: wrap;
 }
 
 /* ==========================================================================

@@ -464,9 +464,17 @@ function showSouvenirTicketModal(data) {
     
     // Fill Ticket Fields
     document.getElementById('ticketPassengerName').textContent = data.name || 'Sayın Misafirimiz';
-    document.getElementById('ticketSeat').textContent = data.seat || '01A';
     document.getElementById('ticketGate').textContent = data.gate || 'LOV27';
-    document.getElementById('ticketGuests').textContent = (data.guests || 1) + ' PAX';
+    document.getElementById('ticketSeat').textContent = data.seat || '01A';
+    if(document.getElementById('ticketGuests')) document.getElementById('ticketGuests').textContent = data.guests || '1';
+    
+    // Update stub fields
+    const stubPass = document.querySelector('.stub-passenger');
+    if (stubPass) stubPass.textContent = data.name || 'Sayın Misafirimiz';
+    const stubGate = document.querySelector('.stub-gate');
+    if (stubGate) stubGate.textContent = data.gate || 'LOV27';
+    const stubSeat = document.querySelector('.stub-seat');
+    if (stubSeat) stubSeat.textContent = data.seat || '01A';
     
     let eventName = 'KINA & DÜĞÜN';
     if (data.event === 'kina') eventName = 'KINA GECESİ';
